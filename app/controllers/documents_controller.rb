@@ -197,6 +197,7 @@ class DocumentsController < ApplicationController
 
   private
   def elastic_search
+    Document.import
     d = Document.__elasticsearch__
     r = d.search(params[:query])
     doc_ids = r.results.response.map {|r| r.id }
